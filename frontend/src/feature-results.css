@@ -1,0 +1,1 @@
+.results-actions{display:flex;align-items:center;gap:7px}.overview-back{height:34px;border:1px solid #353741;border-radius:6px;padding:0 10px;background:#1a1c23;color:#aeb0bb;font:500 9px 'DM Sans',sans-serif;cursor:pointer;white-space:nowrap}.overview-back:hover{border-color:#625489;color:#e2d8ff}@media(max-width:620px){.results-actions{width:100%}}

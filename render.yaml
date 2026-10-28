@@ -1,0 +1,47 @@
+services:
+  - type: web
+    name: repomind-api
+    runtime: docker
+    region: singapore
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    healthCheckPath: /health
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: repomind-db
+          property: connectionString
+      - key: DB_USERNAME
+        fromDatabase:
+          name: repomind-db
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: repomind-db
+          property: password
+      - key: FRONTEND_ORIGIN
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: PINECONE_API_KEY
+        sync: false
+      - key: PINECONE_INDEX_HOST
+        sync: false
+      - key: MAX_REPOSITORY_FILES
+        value: "5000"
+      - key: MAX_REPOSITORY_SOURCE_BYTES
+        value: "52428800"
+      - key: MAX_REPOSITORY_CHUNKS
+        value: "5000"
+      - key: INDEX_REQUESTS_PER_HOUR
+        value: "3"
+      - key: QUERIES_PER_MINUTE
+        value: "20"
+      - key: JAVA_TOOL_OPTIONS
+        value: "-XX:MaxRAMPercentage=65.0 -XX:+UseSerialGC"
+
+databases:
+  - name: repomind-db
+    region: singapore
+    databaseName: github_repo_analyzer
+    user: repomind

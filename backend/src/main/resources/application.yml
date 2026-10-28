@@ -1,0 +1,35 @@
+server:
+  port: ${PORT:8000}
+spring:
+  config:
+    import: optional:file:.env[.properties]
+  application:
+    name: github-ai-assistant
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/GitHub%20Repo%20Analyzer%20Database}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:postgres}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    properties:
+      hibernate:
+        jdbc:
+          time_zone: UTC
+app:
+  clone-dir: ${CLONE_DIR:./data/repos}
+  gemini-api-key: ${GEMINI_API_KEY:}
+  gemini-model: ${GEMINI_MODEL:gemini-2.5-flash}
+  gemini-embedding-model: ${GEMINI_EMBEDDING_MODEL:gemini-embedding-2}
+  pinecone-api-key: ${PINECONE_API_KEY:}
+  pinecone-index-host: ${PINECONE_INDEX_HOST:}
+  chunk-size: ${CHUNK_SIZE:40}
+  chunk-overlap: ${CHUNK_OVERLAP:10}
+  max-file-bytes: ${MAX_FILE_BYTES:500000}
+  max-repository-files: ${MAX_REPOSITORY_FILES:5000}
+  max-repository-source-bytes: ${MAX_REPOSITORY_SOURCE_BYTES:52428800}
+  max-repository-chunks: ${MAX_REPOSITORY_CHUNKS:20000}
+  rate-limit:
+    index-per-hour: ${INDEX_REQUESTS_PER_HOUR:3}
+    queries-per-minute: ${QUERIES_PER_MINUTE:20}

@@ -1,0 +1,12 @@
+.env
+.env.*
+!.env.example
+target/
+.m2/
+data/
+node_modules/
+dist/
+.idea/
+.vscode/
+*.log
+frontend/.env.local
