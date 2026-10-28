@@ -92,7 +92,7 @@ Feature Finder searches are recorded per repository in the `search_history` tabl
 
 ## Deployment
 
-The repository includes a Render Blueprint in `render.yaml` for the Java API and PostgreSQL database. Connect the GitHub repository to Render and create the Blueprint; review the selected service/database plans before confirming because Render may charge for the plans selected. Enter `GEMINI_API_KEY`, `PINECONE_API_KEY`, `PINECONE_INDEX_HOST`, and the Vercel frontend origin when prompted. The API container converts Render's PostgreSQL connection URL into the JDBC URL Spring expects.
+The repository includes a Render Blueprint in `render.yaml` for a free trial deployment of the Java API and PostgreSQL database. The free API sleeps after inactivity, and the free PostgreSQL database expires after 30 days, so upgrade the database before relying on it for long-term user data. Enter `GEMINI_API_KEY`, `PINECONE_API_KEY`, `PINECONE_INDEX_HOST`, and the Vercel frontend origin when prompted. The API container converts Render's PostgreSQL connection URL into the JDBC URL Spring expects.
 
 Deploy the `frontend` directory as a Vercel Vite project: set its project root to `frontend`, build command to `npm run build`, output directory to `dist`, and `VITE_API_URL` to the deployed Render API URL. After Vercel assigns the production URL, set Render's `FRONTEND_ORIGIN` to that exact origin and redeploy the API. Keep credentials in the hosting dashboards; do not put them in the repository. For Docker Compose deployment, configure `VITE_API_URL` and `FRONTEND_ORIGIN` in the root `.env` before building so browsers use public service URLs instead of `localhost`.
 

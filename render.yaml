@@ -2,6 +2,7 @@ services:
   - type: web
     name: repomind-api
     runtime: docker
+    plan: free
     region: singapore
     dockerfilePath: ./backend/Dockerfile
     dockerContext: ./backend
@@ -42,6 +43,7 @@ services:
 
 databases:
   - name: repomind-db
+    plan: free
     region: singapore
     databaseName: github_repo_analyzer
     user: repomind
